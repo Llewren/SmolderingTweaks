@@ -10,8 +10,9 @@ INCLUDE ~smolderingtweaks/lib/functions.tpa~
 
 COPY ~smolderingtweaks/paladinauras/bams~ ~override~
 
-LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Aura of Courage~) STR_VAR bam_file = ~wnaoc01~ RET cour_icon = icon END
 
+// Unkitted Paladin: Aura of Courage
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Aura of Courage~) STR_VAR bam_file = ~wnaoc01~ RET cour_icon = icon END
 COPY ~%MOD_FOLDER%/paladinauras~ ~override~
 COPY_EXISTING ~wnaura01.spl~ ~override~
   SAY NAME1 ~Aura of Courage~ // Unkitted Paladin
@@ -23,7 +24,6 @@ COPY_EXISTING ~wnaura01.spl~ ~override~
   
   At 3rd and 6th level, the area is 15 ft. At 15th level, the area increases to 20 ft. At 20th level, the area increases to 30 ft.
 ~
-  SAY 0x3a ~wnaoc01~
 LPF ALTER_EFFECT INT_VAR match_opcode = 142 match_parameter2= 0 parameter2 = cour_icon END
 
 OUTER_TEXT_SPRINT ability ~GA_WNAURA01~
@@ -32,9 +32,11 @@ OUTER_TEXT_SPRINT line ~ABILITY3    ****    ****    %ability%    ****    ****   
 
 APPEND ~CLABPA01.2DA~ ~%line%~
 
-/*COPY ~%MOD_FOLDER%/paladinauras~ ~override~
+
+// Cavalier: Aura of Valor
+COPY ~%MOD_FOLDER%/paladinauras~ ~override~
 COPY_EXISTING ~wnaura02.spl~ ~override~
-  SAY 0x08 ~Aura of Valor~ // Cavalier
+  SAY 0x08 ~Aura of Valor~
   SAY 0x50 ~Targets all allies around the caster with effects that improve based on the caster's level:
   3rd Level: +1 bonus to hit and damage rolls, immunity to fear for 1 turn.
   6th Level: +2 bonus to hit and damage rolls, immunity to fear for 1 turn.
@@ -44,26 +46,43 @@ COPY_EXISTING ~wnaura02.spl~ ~override~
   At 3rd and 6th level, the area is 15 ft. At 15th level, the area increases to 20 ft. At 20th level, the area increases to 30 ft.
 ~
 
+OUTER_TEXT_SPRINT ability ~GA_WNAURA02~
+
+OUTER_TEXT_SPRINT line ~ABILITY3    ****    ****    %ability%    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****~
+
+APPEND ~CLABPA02.2DA~ ~%line%~
+
+
+
+// Inquisitor: Aura of Warding
 COPY ~%MOD_FOLDER%/paladinauras~ ~override~
 COPY_EXISTING ~wnaura03.spl~ ~override~
-  SAY 0x08 ~Aura of Warding~ // Inquisitor
+  SAY 0x08 ~Aura of Warding~ 
   SAY 0x50 ~Targets all allies around the caster with effects that improve based on the caster's level:
-  3rd Level: +1 bonus to Save vs. Spell, immunity to silence and fear for 1 turn.
-  6th Level: +2 bonus to Save vs. Spell, +1 bonus to hit and damage rolls against arcane spellcasters, immunity to silence, fear and slow for 1 turn.
-  15th Level: +3 bonus to Save vs. Spell, +2 bonus to hit and damage rolls against arcane spellcasters, immunity to silence, fear, slow, and confusion for 1 turn.
-  20th Level: +4 bonus to Save vs. Spell, +3 bonus to hit and damage rolls against arcane spellcasters, immunity to silence, fear, slow, confusion for 1 turn, and immunity to Time Stop for 1.5 rounds.
+  3rd Level: +2 bonus to Save vs. Spell, immunity to silence and fear for 1 turn.
+  6th Level: +3 bonus to Save vs. Spell, +1 bonus to hit and damage rolls against arcane spellcasters, immunity to silence and fear for 1 turn.
+  15th Level: +4 bonus to Save vs. Spell, +2 bonus to hit and damage rolls against arcane spellcasters, immunity to silence, fear, and slow for 1 turn.
+  20th Level: +5 bonus to Save vs. Spell, +3 bonus to hit and damage rolls against arcane spellcasters, immunity to silence, fear, slow for 1 turn, and immunity to Time Stop for 1.5 rounds.
   
   At 3rd and 6th level, the area is 15 ft. At 15th level, the area increases to 20 ft. At 20th level, the area increases to 30 ft.
 ~
 
+OUTER_TEXT_SPRINT ability ~GA_WNAURA03~
+
+OUTER_TEXT_SPRINT line ~ABILITY3    ****    ****    %ability%    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****~
+
+APPEND ~CLABPA03.2DA~ ~%line%~
+
+
+/* Undead Hunter: Aura of Fortitude
 COPY ~%MOD_FOLDER%/paladinauras~ ~override~
 COPY_EXISTING ~wnaura04.spl~ ~override~
   SAY NAME1 ~Aura of Fortitude~ // Undead Hunter
   SAY UNIDENTIFIED_DESC ~Targets all allies around the caster with effects that improve based on the caster's level:
-  3rd Level: +1 bonus to hit and damage rolls against undead, +1 bonus to Save vs. Death, immunity to fear and charm for 1 turn.
-  6th Level: +2 bonus to hit and damage rolls against undead, +2 bonus to Save vs. Death, immunity to fear, charm, and disease for 1 turn.
-  15th Level: +3 bonus to hit and damage rolls against undead, +3 bonus to Save vs. Death, immunity to fear, charm, disease, and Level Drain for 1 turn.
-  20th Level: +4 bonus to hit and damage rolls against undead, +4 bonus to Save vs. Death, +5 bonus to effective Turn Undead level, immunity to fear, charm, disease, and Level Drain for 1 turn.
+  3rd Level: +2 bonus to hit and damage rolls against undead, +1 bonus to Save vs. Death, immunity to fear and charm for 1 turn.
+  6th Level: +3 bonus to hit and damage rolls against undead, +2 bonus to Save vs. Death, immunity to fear, charm, and disease for 1 turn.
+  15th Level: +4 bonus to hit and damage rolls against undead, +3 bonus to Save vs. Death, immunity to fear, charm, disease, and Level Drain for 1 turn.
+  20th Level: +5 bonus to hit and damage rolls against undead, +4 bonus to Save vs. Death, +5 bonus to effective Turn Undead level, immunity to fear, charm, disease, and Level Drain for 1 turn.
   
   At 3rd and 6th level, the area is 15 ft. At 15th level, the area increases to 20 ft. At 20th level, the area increases to 30 ft.
 ~
