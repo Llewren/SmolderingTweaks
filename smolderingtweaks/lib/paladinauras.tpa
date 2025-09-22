@@ -99,3 +99,160 @@ OUTER_TEXT_SPRINT ability ~GA_WNAURA04~
 OUTER_TEXT_SPRINT line ~ABILITY3    ****    ****    %ability%    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****~
 
 APPEND ~CLABPA04.2DA~ ~%line%~
+
+// Insert new abilities into character description
+
+// Paladin
+
+ACTION_FOR_EACH description IN 
+    CLASTEXT
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "PALADIN" BEGIN // fill in the kit name - can be found in 
+          READ_2DA_ENTRY index 4 col_count kit_desc
+          SPRINT old_desc ~May Turn Undead as a Cleric two levels lower, starting at level 3.~
+          SPRINT new_desc ~May Turn Undead as a Cleric two levels lower, starting at level 3.
+– May cast Aura of Courage once per day, starting at level 3. The initial range is 15ft, which increases to 25ft at level 15, and 30ft at level 20.
+
+AURA OF COURAGE
+When this ability is activated, all allies within range of the Paladin gain bonuses based on the Paladin's level:
+  3rd - +2 bonus to Armor Class vs. slashing, crushing, and piercing, +1 bonus to Saving Throws, and immunity to fear for 1 turn.
+  6th - +3 bonus to Armor Class vs. slashing, crushing, and piercing, +2 bonus to Saving Throws, and immunity to fear for 1 turn.
+  15th - +4 bonus to Armor Class vs. slashing, crushing, and piercing, +3 bonus to Saving Throws, immunity to fear and confusion for 1 turn.
+  20th - +4 bonus to hit and damage rolls, +1 bonus to casting speed, +1 bonus to Luck, immunity to fear for 1 turn.
+  ~
+          GET_STRREF %kit_desc% desc_text
+          INNER_PATCH_SAVE desc_text ~%desc_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_desc%~ ~%new_desc%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_desc%~ ~%desc_text%~
+          END
+        END
+        
+      END
+      BUT_ONLY
+    END
+  END
+
+// Cavalier
+
+ACTION_FOR_EACH description IN 
+    CLASTEXT
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "CAVALIER" BEGIN // fill in the kit name - can be found in 
+          READ_2DA_ENTRY index 4 col_count kit_desc
+          SPRINT old_desc ~20% resistance to fire and acid.~
+          SPRINT new_desc ~20% resistance to fire and acid.
+– May cast Aura of Valor once per day, starting at level 3. The initial range is 15ft, which increases to 25ft at level 15, and 30ft at level 20.
+
+AURA OF VALOR
+When this ability is activated, all allies within range of the Cavalier gain bonuses based on the Cavalier's level:
+  3rd - +1 bonus to hit and damage rolls, immunity to fear for 1 turn.
+  6th - +2 bonus to hit and damage rolls, immunity to fear for 1 turn.
+  15th - +3 bonus to hit and damage rolls, +1 bonus to casting speed, immunity to fear for 1 turn.
+  20th - +4 bonus to hit and damage rolls, +1 bonus to casting speed, +1 bonus to Luck, immunity to fear for 1 turn.~
+          GET_STRREF %kit_desc% desc_text
+          INNER_PATCH_SAVE desc_text ~%desc_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_desc%~ ~%new_desc%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_desc%~ ~%desc_text%~
+          END
+        END
+        
+      END
+      BUT_ONLY
+    END
+  END
+  
+
+// Inquisitor
+
+ACTION_FOR_EACH description IN 
+    CLASTEXT
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "INQUISITOR" BEGIN // fill in the kit name - can be found in 
+          READ_2DA_ENTRY index 4 col_count kit_desc
+          SPRINT old_desc ~Immune to hold and charm.~
+          SPRINT new_desc ~Immune to hold and charm.
+– May cast Aura of Warding once per day, starting at level 3. The initial range is 15ft, which increases to 25ft at level 15, and 30ft at level 20.
+
+AURA OF WARDING
+When this ability is activated, all allies within range of the Inquisitor gain bonuses based on the Inquisitor's level:
+  3rd - +2 bonus to Save vs. Spell, immunity to silence and fear for 1 turn.
+  6th - +3 bonus to Save vs. Spell, +1 bonus to hit and damage rolls against arcane spellcasters, immunity to silence and fear for 1 turn.
+  15th - +4 bonus to Save vs. Spell, +2 bonus to hit and damage rolls against arcane spellcasters, immunity to silence, fear, and slow for 1 turn.
+  20th - +5 bonus to Save vs. Spell, +3 bonus to hit and damage rolls against arcane spellcasters, immunity to silence, fear, slow for 1 turn, and immunity to Time Stop for 1.5 rounds—when the immunity runs out during the duration of a Time Stop spell, the Inquisitor and <HISHER> allies will be frozen in time until the spell ends.~
+          GET_STRREF %kit_desc% desc_text
+          INNER_PATCH_SAVE desc_text ~%desc_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_desc%~ ~%new_desc%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_desc%~ ~%desc_text%~
+          END
+        END
+        
+      END
+      BUT_ONLY
+    END
+  END
+  
+// Undead Hunter
+
+ACTION_FOR_EACH description IN 
+    CLASTEXT
+  BEGIN
+    ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
+      COPY_EXISTING ~%description%.2DA~ ~override~
+      COUNT_2DA_COLS col_count
+      COUNT_2DA_ROWS col_count rows
+      FOR (index = 0; index < rows; ++index) BEGIN
+        READ_2DA_ENTRY index 0 col_count row_name
+
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "UNDEAD_HUNTER" BEGIN // fill in the kit name - can be found in 
+          READ_2DA_ENTRY index 4 col_count kit_desc
+          SPRINT old_desc ~Immune to hold and level drain.~
+          SPRINT new_desc ~Immune to hold and level drain.
+– May cast Aura of Fortitude once per day, starting at level 3. The initial range is 15ft, which increases to 25ft at level 15, and 30ft at level 20.
+
+AURA OF FORTITUDE
+When this ability is activated, all allies within range of the Undead Hunter gain bonuses based on the Undead Hunter's level:
+  3rd - +2 bonus to hit and damage rolls against undead, +1 bonus to Save vs. Death, immunity to fear and charm for 1 turn.
+  6th - +3 bonus to hit and damage rolls against undead, +2 bonus to Save vs. Death, immunity to fear, charm, and disease for 1 turn.
+  15th - +4 bonus to hit and damage rolls against undead, +3 bonus to Save vs. Death, immunity to fear, charm, disease, and Level Drain for 1 turn.
+  20th - +5 bonus to hit and damage rolls against undead, +4 bonus to Save vs. Death, +5 bonus to effective Turn Undead level, immunity to fear, charm, disease, and Level Drain for 1 turn.~
+          GET_STRREF %kit_desc% desc_text
+          INNER_PATCH_SAVE desc_text ~%desc_text%~ BEGIN
+            REPLACE_TEXTUALLY ~%old_desc%~ ~%new_desc%~
+          END
+          INNER_ACTION BEGIN
+            STRING_SET_EVALUATE ~%kit_desc%~ ~%desc_text%~
+          END
+        END
+        
+      END
+      BUT_ONLY
+    END
+  END
+  
