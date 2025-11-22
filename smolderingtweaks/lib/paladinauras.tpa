@@ -125,7 +125,7 @@ When this ability is activated, all allies within range of the Paladin gain bonu
   3rd - +2 bonus to Armor Class vs. slashing, crushing, and piercing, +1 bonus to Saving Throws, and immunity to fear for 1 turn.
   6th - +3 bonus to Armor Class vs. slashing, crushing, and piercing, +2 bonus to Saving Throws, and immunity to fear for 1 turn.
   15th - +4 bonus to Armor Class vs. slashing, crushing, and piercing, +3 bonus to Saving Throws, immunity to fear and confusion for 1 turn.
-  20th - +4 bonus to hit and damage rolls, +1 bonus to casting speed, +1 bonus to Luck, immunity to fear for 1 turn.
+  20th - +5 bonus to Armor Class vs. slashing, crushing, and piercing, +4 bonus to Saving Throws, +1 bonus to Luck, immunity to fear and confusion for 1 turn.
   ~
           GET_STRREF %kit_desc% desc_text
           INNER_PATCH_SAVE desc_text ~%desc_text%~ BEGIN
